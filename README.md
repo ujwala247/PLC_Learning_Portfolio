@@ -102,8 +102,6 @@ Siemens TIA Portal V17, WinCC Runtime Advanced, PLCSIM, CODESYS V3.5
 ---
 
 ## Week 2 Summary
-- Total days: 7
-- Programs built: 6
 - Tools used: TIA Portal V17, WinCC, CODESYS, RSLogix
 - Concepts mastered: HMI design, protocols, analog
   scaling, PID control, safety logic, multi-brand awareness
