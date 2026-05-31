@@ -28,6 +28,33 @@ Siemens TIA Portal V17, WinCC Runtime Advanced, PLCSIM, CODESYS V3.5
 - Temperature bar graph on HMI (Green/Yellow/Red zones)
 - Simulation tested: 6912 raw = 50°C ✅
 
+## Day 11 — PID Control using PID_Compact Block
+- PID concepts: SP (Setpoint), PV (Process Value), CV (Control Output)
+- P term: reacts to current error
+- I term: eliminates steady state offset
+- D term: reduces overshoot
+- PID_Compact block configured in TIA Portal
+- Input: Sensor_DB.Temperature (scaled analog value)
+- Output: Sensor_DB.Heater_Output (0-100%)
+- Mode 4 = Automatic operation
+- Simulation tested: temperature approaching 80°C → output reduced ✅
+- Process value limits: 0-200°C
+- Output limits: 0-100%
+
+## Day 12 — Safety PLC + SIL Levels
+- SIL 1: basic E-stop, conveyor machines
+- SIL 2: chemical/oil/gas plants (JSW Steel level)
+- SIL 3: hazardous/nuclear processes
+- Siemens F-CPU: dedicated fail-safe CPU
+- F-OB1: safety program block, faster scan time
+- Safety contacts wired NC — wire break = safe state
+- Dual channel wiring for higher SIL levels
+- Built Safety_Logic FC in TIA Portal:
+  - E-stop + gate interlock logic
+  - Manual reset required after any safety trip
+  - Enable_Output only TRUE when all safe + reset done
+- Simulation tested: E-stop release → output stayed FALSE until reset ✅
+
 ## Day 13 — Schneider EcoStruxure + Multi-Brand PLC
 
 ### Schneider PLC Family
@@ -57,8 +84,6 @@ Siemens TIA Portal V17, WinCC Runtime Advanced, PLCSIM, CODESYS V3.5
 | Allen-Bradley | Studio 5000 | EtherNet/IP |
 | Mitsubishi | GX Works3 | CC-Link |
 
----
-
 ## Day 14 — FBD Language + Week 2 Revision
 
 ### FBD (Function Block Diagram)
@@ -71,19 +96,25 @@ Siemens TIA Portal V17, WinCC Runtime Advanced, PLCSIM, CODESYS V3.5
 ### Week 2 Revision Score
 - Self-test: 16/20 correct
 - Strong areas: HMI, Analog I/O, PID, Safety
-- Areas to review: [add your weak topics here]
+- Areas to review: SetBit event, Modbus port 502,
+  P term definition, OPC-UA purpose
 
 ---
 
 ## Week 2 Summary
-Total days: 7
-Programs built: 6
-Tools used: TIA Portal V17, WinCC, CODESYS, RSLogix
-Concepts mastered: HMI design, protocols, analog scaling,
-PID control, safety logic, multi-brand awareness
+- Total days: 7
+- Programs built: 6
+- Tools used: TIA Portal V17, WinCC, CODESYS, RSLogix
+- Concepts mastered: HMI design, protocols, analog
+  scaling, PID control, safety logic, multi-brand awareness
+
 ## Concepts Mastered
 - HMI tag binding and events
 - PROFINET vs Modbus vs PROFIBUS differences
 - Analog signal scaling formula
 - Wire break fault detection logic
 - WinCC alarm configuration
+- PID control closed loop theory
+- SIL levels and safety PLC architecture
+- Multi-brand PLC comparison
+- FBD programming language
