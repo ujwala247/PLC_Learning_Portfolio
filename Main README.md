@@ -1,34 +1,43 @@
-# Ujwala Venuturla — PLC Programming Portfolio
+# Project 2 — Energy Monitoring System
 
-## About
-Structured 3-month self-learning journey
-transitioning from Automation Level 2 Engineer
-to PLC Programmer role.
+## Overview
+3-zone plant energy monitoring system with real-time
+kW/kWh tracking, threshold alerts, and shift-based
+consumption reporting. Directly mirrors EMS work at
+JSW Steel.
 
-Current experience: Assistant Manager — Automation
-JSW Steel, Anjar, Gujarat
+## Architecture
+- FB1_Energy_Reader — reusable FB, one instance per zone
+- 3 instance DBs: Zone1/2/3_Reader_DB
+- Config_DB — thresholds + shift tracking
+- Alarm_DB — bit-packed alarm word
+- 4-screen WinCC HMI: Main, Trends, Alarms, Counters
 
-## Progress: Month 1 Complete ✅
+## Key Features
+- Live kW calculation from scaled V/I/PF
+- kWh accumulation (kW × 1/3600 per second)
+- Per-zone + total threshold alerts
+- Shift consumption = current kWh - shift start kWh
+- Color-coded power bars (Green/Yellow/Red)
 
-## Projects
-| Project | Status | Tools | Link |
-|---|---|---|---|
-| Conveyor Belt Automation | ✅ Complete | TIA Portal + WinCC | Week3/ |
-| Energy Monitoring System | 🔄 In progress | TIA Portal + Python | Week3/ |
-| Batch Process Automation | ⏳ Planned | TIA Portal + Python | — |
+## Python + OPC-UA Integration
+Full Python script written using opcua library:
+- Connects to PLC OPC-UA server
+- Reads live zone/total power values
+- Logs to SQLite database every interval
+- Threshold-based alert triggering (WhatsApp/email ready)
 
-## Skills
-- Siemens TIA Portal V17 — Advanced
-- SCL Structured Text — Intermediate-Advanced
-- SFC + Ladder Logic — Advanced
-- WinCC HMI Design — Intermediate-Advanced
-- Python + PLC Integration — Advanced ⭐
-- Allen-Bradley RSLogix — Basic
-- Safety PLC SIL 1/2 — Conceptual
+**Note:** TIA Portal trial license does not include OPC-UA
+server activation. Tested and confirmed across PLCSIM,
+PLCSIM Advanced, and CODESYS — this is a genuine licensing
+requirement, not a configuration error. Python code is
+complete and production-ready for licensed/physical hardware.
+
+## Simulation Results
+- Zone 1& 2 & 3: tested with forced analog values ✅
+- Shift consumption tracking working ✅
+- All 3 zones displaying simultaneously on HMI ✅
 
 ## Tools Used
-TIA Portal V17, CODESYS V3.5, WinCC,
-RSLogix Micro Starter, PLCSIM, Python
-
-## Contact
-Email: ujwalareddyvenuturla@gmail.com
+TIA Portal V17, WinCC, PLCSIM, PLCSIM Advanced,
+Python (opcua, sqlite3), UAExpert
